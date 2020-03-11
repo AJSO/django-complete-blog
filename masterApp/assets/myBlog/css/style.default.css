@@ -447,24 +447,24 @@ div[class*="-btn"] {
 * ==========================================================
 */
 .navbar {
-  background: #fff;
-  padding-top: 20px !important;
-  padding-bottom: 20px !important;
+  background: #1d2139;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
   z-index: 9998;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #1d2139;
 }
 
 .navbar .langs a:first-of-type,
 .navbar .search-btn {
   margin-left: 20px;
   padding-left: 20px;
-  border-left: 1px solid #ddd;
+  border-left: 1px solid #1d2139;
   height: 20px;
   line-height: 20px;
 }
 
 .navbar .search-btn {
-  color: #333;
+  color: #fff;
   font-size: 0.9em;
 }
 
@@ -504,18 +504,18 @@ div[class*="-btn"] {
 
 .navbar .langs a {
   font-size: 0.8em;
-  color: #aaa;
+  color: #fff;
   font-weight: 700;
 }
 
 .navbar .langs a.active {
-  color: #333;
+  color: #fff;
 }
 
 .navbar .langs span {
   width: 15px;
   height: 1px;
-  background: #ddd;
+  background: #1d2139;
   margin: 0 5px;
 }
 
