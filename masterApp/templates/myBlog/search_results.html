@@ -1,12 +1,18 @@
-{% extends "base.html" %}
+{% extends "myBlog/base.html" %}
 {% block content %}
-
+<div class="container">
+      <div class="row">
+      <main class="posts-listing col-lg-8"> 
 <h3>This the results of your Search</h3>
 {% for result in queryset %}
-    <a href="{{ result.get_absolute_url }}">{{ result.title }}</a><br/>
+    <a href="{{ result.get_absolute_url }}"><h4 class="h5">{{ result.title }}</h4></a><br/>
 
 
 {% endfor %}
 
+</main>
+
+</div>
+</div>
 
 {% endblock content %}
