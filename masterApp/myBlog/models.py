@@ -78,3 +78,10 @@ class Post(models.Model):
     @property
     def comment_count(self):
         return Comment.objects.filter(post=self).count()
+
+class Signup(models.Model):
+    email = models.EmailField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email
