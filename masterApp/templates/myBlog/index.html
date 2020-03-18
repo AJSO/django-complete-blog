@@ -2,31 +2,91 @@
 {% load static %}
 {% block content %}
     <!-- Hero Section-->
-    <section style="background: url({% static 'myBlog/'%}img/hero.jpg); background-size: cover; background-position: center center" class="hero">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-7">
-            <h1>Bootstrap 4 Blog - A free template by Bootstrap Temple</h1><a href="#" class="hero-link">Discover More</a>
-          </div>
-        </div><a href=".intro" class="continue link-scroll"><i class="fa fa-long-arrow-down"></i> Scroll Down</a>
-      </div>
-    </section>
+  <div id="sliders" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+		<li data-target="#sliders" data-slide-to="0" class="active"></li>
+		<li data-target="#sliders" data-slide-to="1"></li>
+		<li data-target="#sliders" data-slide-to="2"></li>
+	</ol>
+	<div class="carousel-inner" role="listbox">
+		<div class="carousel-item active">
+			<img src="{% static 'myBlog/'%}img/background.png" alt="First slide">
+			<div class="carousel-caption">
+				<h1 class="display-2">Title</h1>
+				<h3>Description</h3>
+				<button type="button" class="btn btn-outline-light">
+						Demo <span class="badge badge-primary"></span>
+				</button>
+				<button type="button" class="btn btn-primary">
+						Notification <span class="badge badge-primary"></span>
+				</button>
+			</div>
+		</div>
+		<div class="carousel-item">
+			<img src="{% static 'myBlog/'%}img/background.png" alt="Second slide">
+			<div class="carousel-caption">
+				<h1 class="display-2">Title</h1>
+				<h3>Description</h3>
+				<button type="button" class="btn btn-outline-light">
+						Demo <span class="badge badge-primary"></span>
+				</button>
+				<button type="button" class="btn btn-primary">
+						Notification <span class="badge badge-primary"></span>
+				</button>
+			</div>
+		</div>
+		<div class="carousel-item">
+			<img src="{% static 'myBlog/'%}img/background.png" alt="Third slide">
+			<div class="carousel-caption">
+				<h1 class="display-2">Title</h1>
+				<h3>Description</h3>
+				<button type="button" class="btn btn-outline-light">
+						Demo <span class="badge badge-primary"></span>
+				</button>
+				<button type="button" class="btn btn-primary">
+						Notification <span class="badge badge-primary"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<a class="carousel-control-prev" href="#sliders" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#sliders" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div>
     <!-- Intro Section-->
-    <section class="intro">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8">
-            <h2 class="h3">Some great intro here</h2>
-            <p class="text-big">Place a nice <strong>introduction</strong> here <strong>to catch reader's attention</strong>. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderi.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!--- Jumbotron -->
+<div class="container-fluid">
+	<div class="row jumbotron">
+		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+			<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
+			<a href=""><button type="button" class="btn btn-primary btn-lg">Web Hosting</button></a>
+		</div>
+	</div>
+</div>
+<!--- Welcome Section -->
+<div class="container-fluid padding">
+	<div class="row welcome text-center">
+		<div class="col-12">
+			<h1 class="display-4">Built With Ease.</h1>
+		</div>
+		<hr/>
+		<div class="col-12">
+			<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
+		</div>
+	</div>	
+</div>
     <section class="featured-posts no-padding-top">
       <div class="container">
         <!-- Post-->
         {% for obj in object_list %}
-        <div class="row d-flex align-items-stretch">
+        <div class="row d-flex align-items-stretch" style="margin-bottom:1rem;">
         {% if not forloop.first and not forloop.last %}
           <div class="image col-lg-5"><img src="{{obj.thumbnail.url}}" alt="..."></div>
           {% endif %}
@@ -38,7 +98,7 @@
                   {% for cat in obj.categories.all %}
                   <a href="#">{{cat.title}}</a>
                   {% endfor %}
-                  </div><a href="">
+                  </div><a href="{{obj.get_absolute_url}}">
                     <h2 class="h4">{{obj.title}}</h2></a>
                 </header>
                 <p>{{ obj.overview }}</p>
@@ -79,7 +139,7 @@
         <div class="row">
         {% for obj in latest %}
           <div class="post col-md-4">
-            <div class="post-thumbnail"><a href=""><img src="{{ obj.thumbnail.url }}" alt="..." class="img-fluid"></a></div>
+            <div class="post-thumbnail"><a href="{{obj.get_absolute_url}}"><img src="{{ obj.thumbnail.url }}" alt="..." class="img-fluid"></a></div>
             <div class="post-details">
               <div class="post-meta d-flex justify-content-between">
                 <div class="date">{{ obj.timestamp }}</div>
@@ -88,7 +148,7 @@
                   <a href="#">{{cat.title}}</a>
                   {% endfor %}
                 </div>
-              </div><a href="">
+              </div><a href="{{obj.get_absolute_url}}">
                 <h3 class="h4">{{obj.title}}</h3></a>
               <p class="text-muted">{{ obj.overview}}</p>
             </div>
@@ -122,19 +182,19 @@
     <section class="gallery no-padding">    
       <div class="row">
         <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="{% static 'myBlog/'%}img/gallery-1.jpg" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-1.jpg '%}" alt="..." class="img-fluid">
+          <div class="item"><a href="{% static 'myBlog/'%}img/gallery-1.jpg" data-fancybox="gallery" class="image"><img src="{% static 'myBlog/'%}img/gallery-1.jpg" alt="..." class="img-fluid">
               <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
         </div>
         <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="{% static 'myBlog/'%}img/gallery-2.jpg" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-2.jpg '%}" alt="..." class="img-fluid">
+          <div class="item"><a href="{% static 'myBlog/'%}img/gallery-2.jpg" data-fancybox="gallery" class="image"><img src="{% static 'myBlog/'%}img/gallery-2.jpg" alt="..." class="img-fluid">
               <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
         </div>
         <div class="mix col-lg-3 col-md-3 col-sm-6">
-            <div class="item"><a href="{% static 'myBlog/'%}img/gallery-3.jpg" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-3.jpg'%}" alt="..." class="img-fluid">
+            <div class="item"><a href="{% static 'myBlog/'%}img/gallery-3.jpg" data-fancybox="gallery" class="image"><img src="{% static 'myBlog/'%}img/gallery-3.jpg" alt="..." class="img-fluid">
               <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
         </div>
         <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="{% static 'myBlog/'%}img/gallery-4.jpg" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-4.jpg' %}" alt="..." class="img-fluid">
+          <div class="item"><a href="{% static 'myBlog/'%}img/gallery-4.jpg" data-fancybox="gallery" class="image"><img src="{% static 'myBlog/'%}img/gallery-4.jpg" alt="..." class="img-fluid">
               <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
         </div>
       </div>
