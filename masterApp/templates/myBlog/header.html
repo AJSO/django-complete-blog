@@ -28,14 +28,14 @@
             <ul class="navbar-nav ml-auto">
               <li class="nav-item"><a href="/" class="nav-link active ">Home</a>
               </li>
-              <li class="nav-item"><a href="/myBlog/blog" class="nav-link ">Blog</a>
+              <li class="nav-item"><a href="/blog" class="nav-link ">Blog</a>
               </li>
               <li class="nav-item"><a href="#" class="nav-link ">Contact</a>
               </li>
-              {% comment %} {% if request.user.is_staff %}
+              {% if request.user.is_staff %}
               <li class="nav-item"><a href="{% url 'post-create' %}" class="nav-link ">Create Article</a>
               </li>
-              {% endif %} {% endcomment %}
+              {% endif %}
             </ul>
             <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
             <ul class="langs navbar-text"><a href="#" class="active">EN</a><span>           </span><a href="#">ES</a></ul>
