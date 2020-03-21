@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 # my apps
     'myBlog.apps.MyblogConfig',
+    'accounts.apps.AccountsConfig', 
 # supporting apps
     'crispy_forms',
     'tinymce',
@@ -181,4 +182,6 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# Registration with Confirmation Mail
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

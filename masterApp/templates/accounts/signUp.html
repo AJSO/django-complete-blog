@@ -1,0 +1,45 @@
+{% extends "accounts/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<body class="hold-transition register-page">
+  <div class="register-box">
+  <div class="register-logo">
+    <a href=""><b>Okitoi</b></a>
+  </div>
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">Register a new membership</p>
+        <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <p>
+            {{ field.label_tag }}<br>
+            {{ field }}
+            {% if field.help_text %}
+                <small style="color: grey">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+            </p>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Sign up</button>
+        </form>
+        <div class="social-auth-links text-center">
+        <p>- OR -</p>
+        <a href="#" class="btn btn-block btn-primary">
+          <i class="fab fa-facebook mr-2"></i>
+          Sign up using Facebook
+        </a>
+        <a href="#" class="btn btn-block btn-danger">
+          <i class="fab fa-google mr-2"></i>
+          Sign up using Gmail
+        </a>
+      </div>
+      <div align="center">I already have a membership? <a href="" class="text-center">Sign in</a></div>
+      </div>
+    </div>
+
+    </div>
+{% endblock content %}
