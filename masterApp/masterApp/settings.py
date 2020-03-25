@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -184,4 +185,15 @@ SITE_ID = 1
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Registration with Confirmation Mail
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+TIME_INPUT_FORMATS = ['%I:%M %p',]
+DATE_INPUT_FORMATS = ['%Y-%-m-%d',]
+DATETIME_INPUT_FORMATS = ['%Y-%-m-%d %I:%M %p']
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 

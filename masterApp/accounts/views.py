@@ -5,6 +5,7 @@ from django.utils.encoding import force_text
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.utils.http import urlsafe_base64_decode
+from django.contrib import messages
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from .tokens import account_activation_token
@@ -29,10 +30,11 @@ def SignUp_View(request):
         subject = 'Please Activate Your Account'
         # load a template like get_template() 
         # and calls its render() method immediately.
-        message = render_to_string('activation_request.html', {
+        messages.success(request, 'Form submission successful')
+        message = render_to_string('accounts/activation_request.html', {
             'user': user,
             'domain': current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            'uid': force_text(urlsafe_base64_encode(force_bytes(user.pk))),
             # method will generate a hash value with user related data
             'token': account_activation_token.make_token(user),
         })
@@ -40,6 +42,8 @@ def SignUp_View(request):
         return redirect('activation_sent')
 
     else:
+        # messages.success(request, 'Form submission successful')
+        messages.error(request, 'Oops!! Something went wrong..')
         form = SignUpForm()
         context = {
             'form': form,
@@ -59,7 +63,8 @@ def activate(request, uidb64, token):
         # set signup_confirmation true
         user.profile.signup_confirmation = True
         user.save()
-        login(request, user)
+        # login(request, user)
+        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         return redirect('home')
     else:
         return render(request, 'accounts/activation_invalid.html')

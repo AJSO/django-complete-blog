@@ -7,11 +7,23 @@
   <div class="register-logo">
     <a href=""><b>Okitoi</b></a>
   </div>
-  <div class="card">
+  <div class="card" style="width:500px;">
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
+              {% if messages %}
+        <ul class="messages" >
+            {% for message in messages %}
+            <li  style="padding:5px; border-radius:3px;" {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         <form method="post">
         {% csrf_token %}
+        <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
         {% for field in form %}
             <p>
             {{ field.label_tag }}<br>
