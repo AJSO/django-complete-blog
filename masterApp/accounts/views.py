@@ -74,3 +74,6 @@ def activation_sent_view(request):
 
 def home_view(request):
     return render(request, 'accounts/home.html')
+
+def profile(request):
+    return render(request, 'accounts/profile.html')
