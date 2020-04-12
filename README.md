@@ -1,3 +1,3 @@
 # django-2020
 
-several blue print of coding samples including authentication with email verification and also using adminLte.
+several blue prints of coding samples including authentication with email verification and also using adminLte.
