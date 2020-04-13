@@ -126,3 +126,5 @@ def profile(request):
 #    else:
 #        return HttpResponse('Activation link is invalid!')
 #    
+def sigin_view(request):
+    pass
